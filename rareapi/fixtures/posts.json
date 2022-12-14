@@ -1,0 +1,26 @@
+[
+  {
+    "model": "rareapi.post",
+    "pk": 1,
+    "fields": {
+      "user_id": 1,
+      "category_id": 1,
+      "title": "Posts",
+      "publication_date": "2022-12-12",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/5994d06915d5db843587ce50/1552451693608-VNZZIB2N5ZZYSJFB14E7/post.jpg?format=500w",
+      "content": "A street light, light pole, lamp pole, lamppost, street lamp, light standard, or lamp standard is a raised source of light on the edge of a road or path. Similar lights may be found on a railway platform. When urban electric power distribution became ubiquitous in developed countries in the 20th century, lights for urban streets followed, or sometimes led."
+  }
+},
+{
+  "model": "rareapi.post",
+  "pk": 2,
+  "fields": {
+    "user_id": 2,
+    "category_id": 2,
+    "title": "Turtles",
+    "publication_date": "2022-12-12",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Turtle_diversity.jpg",
+    "content": "Turtles are an order of reptiles known as Testudines, characterized by a shell developed mainly from their ribs. Modern turtles are divided into two major groups, the Pleurodira (side necked turtles) and Cryptodira (hidden necked turtles), which differ in the way the head retracts. There are 360 living and recently extinct species of turtles, including land-dwelling tortoises and freshwater terrapins."
+  }
+}
+]
