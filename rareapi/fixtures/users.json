@@ -1,0 +1,54 @@
+[
+  {
+    "model": "rareapi.user",
+    "pk": 1,
+    "fields": {
+      "first_name": "Rochelle",
+      "last_name": "Rossman",
+      "bio": "E19 in the household",
+      "profile_image_url": "https://media.licdn.com/dms/image/C5603AQFz6aymAO59Og/profile-displayphoto-shrink_200_200/0/1657303325214?e=1676505600&v=beta&t=QefdKgc8vVGinNSk9N6LmNgW4wuimU3Kqo_3GtmvITo",
+      "email": "rochelle.rossman@gmail.com",
+      "created_on": "2022-12-13",
+      "active": "True"
+  }
+},
+{
+  "model": "rareapi.user",
+  "pk": 2,
+  "fields": {
+    "first_name": "Mitch",
+    "last_name": "McCullough",
+    "bio": "Hello",
+    "profile_image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.facebook.com%2F2123659547902313%2Fphotos%2Fa.2123659901235611%2F2194516650816602%2F%3Ftype%3D3&psig=AOvVaw0DdOlGPD9Qj8ouaecfIjjr&ust=1671064582782000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCJiJyOju9_sCFQAAAAAdAAAAABAE",
+    "email": "mcmculllough@gmail.com",
+    "created_on": "2022-12-13",
+    "active": "True"
+}
+},
+{
+  "model": "rareapi.user",
+  "pk": 3,
+  "fields": {
+    "first_name": "Lesley",
+    "last_name": "Keyes",
+    "bio": "Hello",
+    "profile_image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Felves&psig=AOvVaw24Qs1YEGJRknQW83KrOupt&ust=1671064803257000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKiDoNLv9_sCFQAAAAAdAAAAABAH",
+    "email": "lesley.keyes@gmail.com",
+    "created_on": "2022-12-13",
+    "active": "True"
+  }
+},
+{
+  "model": "rareapi.user",
+  "pk": 4,
+  "fields": {
+    "first_name": "Nick",
+    "last_name": "Scrimale",
+    "bio": "Hello",
+    "profile_image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ripleys.com%2Fweird-news%2Foscar-mayer-wienermobile%2F&psig=AOvVaw37-LSCXs5ZyDajrho0WHFU&ust=1671064884371000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKidzPjv9_sCFQAAAAAdAAAAABAE",
+    "email": "nick.scrimale@gmail.com",
+    "created_on": "2022-12-13",
+    "active": "True"
+  }
+}
+]
