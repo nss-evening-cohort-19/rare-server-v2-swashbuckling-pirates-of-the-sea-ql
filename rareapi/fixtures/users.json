@@ -3,6 +3,7 @@
     "model": "rareapi.user",
     "pk": 1,
     "fields": {
+      "uid": 1,
       "first_name": "Rochelle",
       "last_name": "Rossman",
       "bio": "E19 in the household",
@@ -16,6 +17,7 @@
   "model": "rareapi.user",
   "pk": 2,
   "fields": {
+    "uid": 2,
     "first_name": "Mitch",
     "last_name": "McCullough",
     "bio": "Hello",
@@ -29,6 +31,7 @@
   "model": "rareapi.user",
   "pk": 3,
   "fields": {
+    "uid": 3,
     "first_name": "Lesley",
     "last_name": "Keyes",
     "bio": "Hello",
@@ -42,6 +45,7 @@
   "model": "rareapi.user",
   "pk": 4,
   "fields": {
+    "uid": 4,
     "first_name": "Nick",
     "last_name": "Scrimale",
     "bio": "Hello",
