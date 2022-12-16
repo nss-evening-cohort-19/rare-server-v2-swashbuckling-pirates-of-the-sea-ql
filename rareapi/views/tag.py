@@ -8,9 +8,10 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('id', 'label')
-        depth = 2
+        depth = 1
 
 class TagView(ViewSet):
+    """Tag view"""
     def retrieve(self, request, pk):
         try:
             tag = Tag.objects.get(pk=pk)
@@ -38,7 +39,7 @@ class TagView(ViewSet):
         serializer = TagSerializer(tag)
         return Response(serializer.data)
 
-    def destroy(self, pk):
+    def destroy(self, request, pk):
         tag = Tag.objects.get(pk=pk)
         tag.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)

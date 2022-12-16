@@ -5,7 +5,8 @@ from rest_framework import serializers, status
 from rareapi.models import Category
 
 class CatView(ViewSet):
-    def retrieve(self, pk):
+    """Category view"""
+    def retrieve(self, request, pk):
         """Handle GET request for single category
         """
         try:
@@ -37,7 +38,7 @@ class CatView(ViewSet):
         serializer = CatSerializer(category)
         return Response(serializer.data)
 
-    def destroy(self, pk):
+    def destroy(self, request, pk):
         category = Category.objects.get(pk=pk)
         category.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -46,4 +47,4 @@ class CatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'label')
-        depth = 2
+        depth = 1
