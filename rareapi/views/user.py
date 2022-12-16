@@ -22,8 +22,7 @@ class UserView(ViewSet):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
-    
-    
+  
 class UserSerializer(serializers.ModelSerializer):
   """JSON serializer for Users"""
   class Meta:
