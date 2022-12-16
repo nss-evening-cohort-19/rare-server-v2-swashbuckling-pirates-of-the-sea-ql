@@ -17,12 +17,16 @@ from django.conf.urls import include
 from rest_framework import routers
 from django.contrib import admin
 from django.urls import path
-from rareapi.views import CommentView, PostTagView, PostView, register_user, check_user
+
+from rareapi.views import TagView, CatView, register_user, check_user, CommentView, PostTagView, PostView, register_user, check_user
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'tags', TagView, 'tag')
+router.register(r'categories', CatView, 'category')
 router.register(r'comments', CommentView, 'comment')
 router.register(r'posttags', PostTagView, 'posttag')
 router.register(r'posts', PostView, 'post')
+
 
 urlpatterns = [
     # Requests to http://localhost:8000/register will be routed to the register_user function
