@@ -18,8 +18,13 @@ class UserView(ViewSet):
       return Response({'message': exception.args[0]}, status=status.HTTP_404_NOT_FOUND)
     
   def list(self, request):
-    """Handle GET requests to get all users"""
+    """Handle GET requests to get users by uid"""
     users = User.objects.all()
+    
+    uid = request.META['HTTP_AUTHORIZATION']
+    if uid is not None:
+      users = users.filter(uid=uid)
+      
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
   
