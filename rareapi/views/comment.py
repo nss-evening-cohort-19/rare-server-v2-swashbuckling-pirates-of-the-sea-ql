@@ -17,7 +17,7 @@ class CommentView(ViewSet):
     
   def list(self, request):
     comments = Comment.objects.all()
-    post = request.query_params.get('post', None)
+    post = self.request.query_params.get("post_id", None)
     if post is not None:
       comments = comments.filter(post_id=post)
       
@@ -29,10 +29,9 @@ class CommentView(ViewSet):
     post = Post.objects.get(pk=request.data["post_id"])
     
     comment = Comment.objects.create(
-      post_id=post,
-      author_id=author,
+      post=post,
+      author=author,
       content=request.data["content"],
-      created_on=request.data["created_on"]
     )
     serializer = CommentSerializer(comment)
     return Response(serializer.data)
@@ -40,7 +39,6 @@ class CommentView(ViewSet):
   def update(self, request, pk):
     comment = Comment.objects.get(pk=pk)
     comment.content = request.data["content"]
-    comment.created_on = request.data["created_on"]
     comment.save()
     
     return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -56,4 +54,4 @@ class CommentSerializer(serializers.ModelSerializer):
   class Meta:
     model = Comment
     depth = 1
-    fields = ('id', 'post_id', 'author_id', 'content', 'created_on')
+    fields = ('id', 'post', 'author', 'content', 'created_on')
