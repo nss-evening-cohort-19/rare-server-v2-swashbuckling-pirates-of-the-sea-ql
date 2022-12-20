@@ -9,6 +9,11 @@ class PostView(ViewSet):
   def list(self, request):
     """Handle GET requests for all posts"""
     posts = Post.objects.all()
+    
+    post_category = request.query_params.get('category', None)
+    if post_category is not None:
+      posts = posts.filter(category_id=post_category)
+      
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
   
