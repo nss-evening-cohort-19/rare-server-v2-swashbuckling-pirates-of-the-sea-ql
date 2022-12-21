@@ -14,10 +14,9 @@ class PostView(ViewSet):
     if post_category is not None:
       posts = posts.filter(category_id=post_category)
       
-    uid = request.META['HTTP_AUTHORIZATION']
-    user = User.objects.get(uid=uid)
-    if user is not None:
-      posts = posts.filter(user_id=user.id)
+    post_user = request.query_params.get('user', None)
+    if post_user is not None:
+      posts = posts.filter(user_id=post_user)
       
       
     serializer = PostSerializer(posts, many=True)
