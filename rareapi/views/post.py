@@ -14,6 +14,11 @@ class PostView(ViewSet):
     if post_category is not None:
       posts = posts.filter(category_id=post_category)
       
+    post_user = request.query_params.get('user', None)
+    if post_user is not None:
+      posts = posts.filter(user_id=post_user)
+      
+      
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
   
