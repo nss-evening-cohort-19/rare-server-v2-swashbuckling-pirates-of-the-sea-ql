@@ -16,15 +16,6 @@ class PostTagView(ViewSet):
       return Response(serializer.data)
     except PostTag.DoesNotExist as ex:
       return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-    
-  # def list(self, request):
-    # post_tags = PostTag.objects.all()
-    # post = request.query_params.get('post', None)
-    # if post is not None:
-    #   post_tags = post_tags.filter(post_id=post)
-      
-    # serializer = PostTagSerializer(post_tags, many=True)
-    # return Response(serializer.data)
 
     
   def list(self, request):
