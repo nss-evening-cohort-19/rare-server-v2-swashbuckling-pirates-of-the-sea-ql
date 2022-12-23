@@ -19,8 +19,7 @@ class CommentView(ViewSet):
     comments = Comment.objects.all()
     post = self.request.query_params.get("post_id", None)
     if post is not None:
-      comments = comments.filter(post_id=post)
-      
+      comments = comments.filter(post_id=post).order_by('-created_on')
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
   
@@ -50,7 +49,7 @@ class CommentView(ViewSet):
     
 class CommentSerializer(serializers.ModelSerializer):
   """serializer for comments"""
-  
+  created_on = serializers.DateTimeField(format="%m-%d-%Y")
   class Meta:
     model = Comment
     depth = 1
