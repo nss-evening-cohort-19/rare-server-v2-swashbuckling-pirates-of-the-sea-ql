@@ -1,0 +1,18 @@
+[
+  {
+    "model": "rareapi.reaction",
+    "pk": 1,
+    "fields": {
+      "label": "Sad",
+      "image_url": "https://emoji.slack-edge.com/T03F2SDTJ/sad-eyes/b7c39705de1c1a11.png"
+    }
+  },
+  {
+    "model": "rareapi.reaction",
+    "pk": 2,
+    "fields": {
+      "label": "Happy",
+      "image_url": "https://a.slack-edge.com/production-standard-emoji-assets/14.0/apple-medium/1f604@2x.png"
+    }
+  }
+]
