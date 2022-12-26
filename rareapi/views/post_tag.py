@@ -16,21 +16,17 @@ class PostTagView(ViewSet):
       return Response(serializer.data)
     except PostTag.DoesNotExist as ex:
       return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
     
   def list(self, request):
     def get_tags_for_post(post_id):
       post = Post.objects.get(id=post_id)
       post_tags = PostTag.objects.filter(post=post)
-      tags = []
-      for post_tag in post_tags:
-        tags.append(post_tag.tag)
-      return tags
-        
+      return post_tags
+
     post_id = request.query_params.get('post', None)
     if post_id is not None:
-      tags = get_tags_for_post(post_id)
-      serializer = TagSerializer(tags, many=True)
+      post_tags = get_tags_for_post(post_id)
+      serializer = PostTagSerializer(post_tags, many=True)
       return Response(serializer.data)
     else:
       post_tags = PostTag.objects.all()
@@ -58,12 +54,11 @@ class PostTagView(ViewSet):
     post_tag = PostTag.objects.get(pk=pk)
     post_tag.delete()
     return Response(None, status=status.HTTP_204_NO_CONTENT)
-    
+
 class PostTagSerializer(serializers.ModelSerializer):
-  """serializer for post tags"""
-  
-  class Meta:
-    model = PostTag
-    depth = 1
-    fields = ('id', 'post_id', 'tag_id')
-    depth = 1
+    post_id = serializers.ReadOnlyField(source='post.id')
+    tag_label = serializers.ReadOnlyField(source='tag.label')
+    tag_id = serializers.ReadOnlyField(source='tag.id')
+    class Meta:
+        model = PostTag
+        fields = ('id', 'post_id', 'tag_label', 'tag_id')
