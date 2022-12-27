@@ -2,10 +2,37 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from rareapi.models import Post, User, Category
+from rareapi.models import Post, User, Category, PostReaction, Reaction
+# from rareapi.views import ReactionSerializer
 
 class PostView(ViewSet):
   """View set for post requests"""
+  def retrieve(self, request, pk):
+    """Handle GET requests for a single post"""
+    try:
+      post = Post.objects.get(id=pk)
+      
+      post_reactions = PostReaction.objects.filter(post=post.id)
+      reactions_on_posts = []
+      
+      for reaction_obj in post_reactions:
+        try:
+          reactions_on_post = Reaction.objects.get(id=reaction_obj.reaction_id)
+          reactions_on_posts_dict = {}
+          reactions_on_posts_dict['id'] = reactions_on_post.id
+          reactions_on_posts_dict['label'] = reactions_on_post.label
+          reactions_on_posts_dict['image_url'] = reactions_on_post.image_url
+          reactions_on_posts.append(reactions_on_posts_dict)
+        except:
+          pass
+
+      post.reactions_on_posts = reactions_on_posts
+      
+      serializer = PostSerializer(post)
+      return Response(serializer.data)
+    except Post.DoesNotExist as e:
+      return Response({'message': e.args[0]}, status=status.HTTP_404_NOT_FOUND)
+    
   def list(self, request):
     """Handle GET requests for all posts"""
     posts = Post.objects.all()
@@ -18,18 +45,25 @@ class PostView(ViewSet):
     if post_user is not None:
       posts = posts.filter(user_id=post_user)
       
+    for post in posts:
+      post_reactions = PostReaction.objects.filter(post=post.id)
+      reactions_on_posts = []
+      
+      for post_reaction_obj in post_reactions:
+        try:
+          reactions_on_post = Reaction.objects.get(id=post_reaction_obj.reaction_id)
+          reactions_on_posts_dict = {}
+          reactions_on_posts_dict['id'] = reactions_on_post.id
+          reactions_on_posts_dict['label'] = reactions_on_post.label
+          reactions_on_posts_dict['image_url'] = reactions_on_post.image_url
+          reactions_on_posts.append(reactions_on_posts_dict)
+        except:
+          pass
+        post.reactions_on_posts = reactions_on_posts
       
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
   
-  def retrieve(self, request, pk):
-    """Handle GET requests for a single post"""
-    try:
-      post = Post.objects.get(id=pk)
-      serializer = PostSerializer(post)
-      return Response(serializer.data)
-    except Post.DoesNotExist as e:
-      return Response({'message': e.args[0]}, status=status.HTTP_404_NOT_FOUND)
     
   def create(self, request):
     """Handle POST requests for a single post"""
@@ -72,5 +106,5 @@ class PostView(ViewSet):
 class PostSerializer(serializers.ModelSerializer):
   class Meta:
     model = Post
-    fields = '__all__'
+    fields = ('id', 'user_id', 'category_id', 'title', 'publication_date', 'image_url', 'content', 'reactions_on_posts')
     depth = 1
