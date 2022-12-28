@@ -19,7 +19,10 @@ class PostView(ViewSet):
         try:
           reactions_on_post = Reaction.objects.get(id=reaction_obj.reaction_id)
           reactions_on_posts_dict = {}
-          reactions_on_posts_dict['id'] = reactions_on_post.id
+          reactions_on_posts_dict['reaction_id'] = reactions_on_post.id
+          reactions_on_posts_dict['post_reaction_id'] = reaction_obj.id
+          reactions_on_posts_dict['post_id'] = reaction_obj.post.id
+          reactions_on_posts_dict['user_id'] = reaction_obj.user.id
           reactions_on_posts_dict['label'] = reactions_on_post.label
           reactions_on_posts_dict['image_url'] = reactions_on_post.image_url
           reactions_on_posts.append(reactions_on_posts_dict)
@@ -53,7 +56,10 @@ class PostView(ViewSet):
         try:
           reactions_on_post = Reaction.objects.get(id=post_reaction_obj.reaction_id)
           reactions_on_posts_dict = {}
-          reactions_on_posts_dict['id'] = reactions_on_post.id
+          reactions_on_posts_dict['reaction_id'] = reactions_on_post.id
+          reactions_on_posts_dict['post_reaction_id'] = post_reaction_obj.id
+          reactions_on_posts_dict['post_id'] = post_reaction_obj.post.id
+          reactions_on_posts_dict['user_id'] = post_reaction_obj.user.id
           reactions_on_posts_dict['label'] = reactions_on_post.label
           reactions_on_posts_dict['image_url'] = reactions_on_post.image_url
           reactions_on_posts.append(reactions_on_posts_dict)
