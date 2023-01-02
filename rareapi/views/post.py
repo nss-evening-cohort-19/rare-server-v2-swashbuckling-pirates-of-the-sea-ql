@@ -41,7 +41,7 @@ class PostView(ViewSet):
       image_url = request.data["image_url"],
       content = request.data["content"],
       user_id = user,
-      category_id =category
+      category_id = category
       )
     serializer = PostSerializer(post)
     return Response(serializer.data)
